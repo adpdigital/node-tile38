@@ -10,6 +10,9 @@ class Tile38 {
 
     constructor({port = 9851, host = 'localhost', debug = false} = {}) {
         this.client = redis.createClient({port, host});
+        this.client.on('error', function(err){
+          console.error('tile38 client error ', err);
+        });
         this.port = port;
         this.host = host;
         // put the OUTPUT in json mode
